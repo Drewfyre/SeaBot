@@ -1,0 +1,9 @@
+C:\Users\Henrik\documents\visual studio 2017\Projects\SeaBot\SeaBot\bin\x64\Debug\netcoreapp1.1\SeaBot.deps.json
+C:\Users\Henrik\documents\visual studio 2017\Projects\SeaBot\SeaBot\bin\x64\Debug\netcoreapp1.1\SeaBot.runtimeconfig.json
+C:\Users\Henrik\documents\visual studio 2017\Projects\SeaBot\SeaBot\bin\x64\Debug\netcoreapp1.1\SeaBot.runtimeconfig.dev.json
+C:\Users\Henrik\documents\visual studio 2017\Projects\SeaBot\SeaBot\bin\x64\Debug\netcoreapp1.1\SeaBot.dll
+C:\Users\Henrik\documents\visual studio 2017\Projects\SeaBot\SeaBot\bin\x64\Debug\netcoreapp1.1\SeaBot.pdb
+C:\Users\Henrik\documents\visual studio 2017\Projects\SeaBot\SeaBot\obj\x64\Debug\netcoreapp1.1\SeaBot.csprojResolveAssemblyReference.cache
+C:\Users\Henrik\documents\visual studio 2017\Projects\SeaBot\SeaBot\obj\x64\Debug\netcoreapp1.1\SeaBot.AssemblyInfo.cs
+C:\Users\Henrik\documents\visual studio 2017\Projects\SeaBot\SeaBot\obj\x64\Debug\netcoreapp1.1\SeaBot.dll
+C:\Users\Henrik\documents\visual studio 2017\Projects\SeaBot\SeaBot\obj\x64\Debug\netcoreapp1.1\SeaBot.pdb

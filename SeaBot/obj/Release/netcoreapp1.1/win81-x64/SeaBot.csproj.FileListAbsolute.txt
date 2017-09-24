@@ -1,0 +1,12 @@
+C:\Users\Henrik\documents\visual studio 2017\Projects\SeaBot\SeaBot\bin\Release\netcoreapp1.1\win81-x64\hostpolicy.dll
+C:\Users\Henrik\documents\visual studio 2017\Projects\SeaBot\SeaBot\bin\Release\netcoreapp1.1\win81-x64\hostfxr.dll
+C:\Users\Henrik\documents\visual studio 2017\Projects\SeaBot\SeaBot\bin\Release\netcoreapp1.1\win81-x64\SeaBot.exe
+C:\Users\Henrik\documents\visual studio 2017\Projects\SeaBot\SeaBot\bin\Release\netcoreapp1.1\win81-x64\SeaBot.deps.json
+C:\Users\Henrik\documents\visual studio 2017\Projects\SeaBot\SeaBot\bin\Release\netcoreapp1.1\win81-x64\SeaBot.runtimeconfig.json
+C:\Users\Henrik\documents\visual studio 2017\Projects\SeaBot\SeaBot\bin\Release\netcoreapp1.1\win81-x64\SeaBot.runtimeconfig.dev.json
+C:\Users\Henrik\documents\visual studio 2017\Projects\SeaBot\SeaBot\bin\Release\netcoreapp1.1\win81-x64\SeaBot.dll
+C:\Users\Henrik\documents\visual studio 2017\Projects\SeaBot\SeaBot\bin\Release\netcoreapp1.1\win81-x64\SeaBot.pdb
+C:\Users\Henrik\documents\visual studio 2017\Projects\SeaBot\SeaBot\obj\Release\netcoreapp1.1\win81-x64\SeaBot.csprojResolveAssemblyReference.cache
+C:\Users\Henrik\documents\visual studio 2017\Projects\SeaBot\SeaBot\obj\Release\netcoreapp1.1\win81-x64\SeaBot.AssemblyInfo.cs
+C:\Users\Henrik\documents\visual studio 2017\Projects\SeaBot\SeaBot\obj\Release\netcoreapp1.1\win81-x64\SeaBot.dll
+C:\Users\Henrik\documents\visual studio 2017\Projects\SeaBot\SeaBot\obj\Release\netcoreapp1.1\win81-x64\SeaBot.pdb
