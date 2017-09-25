@@ -14,6 +14,12 @@ namespace SeaBot.Classes.Modules
             await SeadogHandler.sGetSeadogTimers(Context.User.Mention);
         }
 
+        [Command("Predict Seadog")]
+        public async Task PredictSeadog(string duration)
+        {
+            await SeadogHandler.PredictNextOnline(Context.User, uint.Parse(duration));
+        }
+
         [Command("help")]
         public async Task HelpCommand()
         {
@@ -29,7 +35,7 @@ namespace SeaBot.Classes.Modules
                     }
                 }
 
-                var chann = await Context.User.CreateDMChannelAsync();
+                var chann = await Context.User.GetOrCreateDMChannelAsync();
                 await chann.SendMessageAsync(s);
             }
         }

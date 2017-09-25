@@ -12,21 +12,19 @@ namespace SeaBot.Classes.Modules
     public class SeadogHandler
     {
         private static SeadogHandler _singleton;
-        
         private List<SocketGuildUser> _Users;
         private Dictionary<ulong, DateTime> _LastOnlineTimes = new Dictionary<ulong, DateTime>();
+        private DateTime _UserPredictedNextLogin(ulong id)
+        {
+            return this._LastOnlineTimes[id].AddHours(this.GetAvgSleepTimeAsync(id).Result);
+        }
+        private Dictionary<SocketUser, uint> PredictedUserTimes = new Dictionary<SocketUser, uint>();
 
         public List<SocketGuildUser> Users
         {
             get { return this._Users; }
         }
-
-        private DateTime _UserPredictedNextLogin(ulong id)
-        {
-            return this._LastOnlineTimes[id].AddHours(this.GetAvgSleepTimeAsync(id).Result);
-        }
-   
-
+        
         public async Task InitializeAsync(List<SocketGuildUser> Users)
         {
             this._Users = Users;
@@ -63,17 +61,23 @@ namespace SeaBot.Classes.Modules
                             {
                                 this.Log(exc.Message);
                             }
+
+                            await GuildManager.SendMsg(PreviousState.Mention
+                                                                    + " has come online!\r\n\r\n"
+                                                                    + Format.Code("# Predicted login time\r\n"
+                                                                    + this._UserPredictedNextLogin(PreviousState.Id).ToString()
+                                                                    + "\r\n\r\n"
+                                                                    + "# Actual login time\r\n"
+                                                                    + DateTime.Now.ToString()
+                                                                    + "\r\n\r\n"
+                                                                    + "# Sleeptime\r\n"
+                                                                    + Math.Round(diff.TotalHours, 2) + " hours!", "Markdown")
+                                                                    + "\r\n\r\n"
+                                                                    + (this.PredictedUserTimes.Count > 0 ? "# Predicted times by users where: \r\n" + this.GetTimeFromUserPrediction() : "")
+                                                                    , (PreviousState.Id == 106880697158905856 ? false : true));
+
+                            this.PredictedUserTimes.Clear();
                         }
-                        await GuildManager.SendMsg(PreviousState.Mention
-                                                                + " has come online!\r\n\r\n"
-                                                                + Format.Code("# Predicted login time\r\n"
-                                                                + this._UserPredictedNextLogin(PreviousState.Id).ToString()
-                                                                + "\r\n\r\n"
-                                                                + "# Actual login time\r\n"
-                                                                + DateTime.Now.ToString()
-                                                                + "\r\n\r\n"
-                                                                + "# Sleeptime\r\n"
-                                                                + Math.Round(diff.TotalHours, 2) + " hours!", "Markdown"), (PreviousState.Id == 106880697158905856 ? false : true));
 
                     }
                     else if (PreviousState.Status == Discord.UserStatus.Online && CurrentState.Status == Discord.UserStatus.Offline)
@@ -89,7 +93,7 @@ namespace SeaBot.Classes.Modules
                         await GuildManager.SendMsg(PreviousState.Mention
                                                             + " has gone offline!\r\n"
                                                             + Format.Code("# Average sleep time\r\n"
-                                                            + this.GetAvgSleepTimeAsync(PreviousState.Id)
+                                                            + this.GetAvgSleepTimeAsync(PreviousState.Id).Result
                                                             + "\r\n\r\n"
                                                             + "# Predicted next login\r\n"
                                                             + this._UserPredictedNextLogin(PreviousState.Id).ToString(), "Markdown"), (PreviousState.Id == 106880697158905856 ? false : true));
@@ -202,10 +206,37 @@ namespace SeaBot.Classes.Modules
             });
         }
 
+        public static async Task PredictNextOnline(SocketUser sender, uint duration)
+        {
+            await Task.Run(() =>
+            {
+                if(_singleton.PredictedUserTimes.ContainsKey(sender))
+                {
+                    _singleton.PredictedUserTimes[sender] = duration;
+                }
+                else
+                {
+                    _singleton.PredictedUserTimes.Add(sender, duration);
+                }
+            });
+        }
+
         private async void Log(string msg)
         {
             await GuildManager.SendMsg("An error occured, please see the log for info.", true);
             Console.WriteLine($"[{DateTime.Now}] Error: {msg}");
+        }
+
+        private string GetTimeFromUserPrediction()
+        {
+            string foo = "";
+
+            foreach (var item in this.PredictedUserTimes.OrderByDescending(ITEM => this._LastOnlineTimes[106880697158905856].AddHours(ITEM.Value)))
+            {
+                foo += $"<{this._Users.First(USER => USER.Id == item.Key.Id).Nickname}> {this._LastOnlineTimes[106880697158905856].AddHours(item.Value)}\r\n";                
+            }
+
+            return foo;
         }
     }
 }
